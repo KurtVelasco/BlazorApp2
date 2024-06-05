@@ -1,0 +1,23 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+<div class="meme">
+        <div class="createAccount">
+            <form class="method-post" action="/login" method="POST">                    
+                <div class="create-logo">
+                    <img alt="logo" src="/imageResources/songBird.png">   
+                </div>
+                <span for="error" id="errorLabel"></span>
+                <label for="username" id="label-username">Email:</label>
+                <input type="text" id="username" name="email" autocomplete="off" placeholder="Enter Email." required>
+                <label for="password" id="label-password">Password:</label>
+                <input type="password" id="password" name="password" autocomplete="off" placeholder="Enter Password." required>
+                <button class="submitCredentials" type="submit">Submit</button>      
+                <div></div>
+                <div class="haveAccount"><a href="supah">Don't have an Account?</a></div>
+            </form>              
+        </div>
+    </div>
+    
+
+@* <SurveyPrompt Title="How is Blazor working for you?" /> *@
