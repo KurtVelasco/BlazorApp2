@@ -1,0 +1,56 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+@* <EditForm Model="@UserData" OnSubmit="@Submit">
+    <h1>UserName</h1>
+    <InputText @bind-Value="UserData.Username" />
+    <h1>Password</h1>
+    <InputText type="password" @bind-Value="UserData.Password" />
+    <button class="btn btn-primary" type="submit">Log in</button>
+    <p style="margin-top: 20px;">@FormCompletedText</p>
+</EditForm> *@
+
+<div class="meme">
+        <div class="createAccount">
+        <EditForm class="method-post" Model="@UserData" OnSubmit="@Submit">
+            <div class="create-logo">
+                    <img alt="logo" src="imageResources/songBird.png">   
+                </div>
+                <span for="error" id="errorLabel"></span>
+                <label for="username" id="label-username">Email:</label>
+                <InputText class="username" placeholder="Username" @bind-Value="UserData.Username" />
+                <label for="password" id="label-password">Password:</label>
+                <InputText  class="password" placeholder="Password" @bind-Value="UserData.Password"/>
+                <button class="submitCredentials" type="submit">Submit</button>      
+                <div class="haveAccount"><a href="account">Don't have an Account?</a></div>
+        </EditForm>              
+        </div>
+    </div>
+
+
+@code {
+    public User UserData { get; set; } = new User();    
+    public string FormCompletedText { get; set; } = "";
+    public string ExUsername = "";
+    public string Password = "";
+
+    protected override void OnInitialized()
+    {
+        UserData = new User();
+    }
+
+    public void Submit()
+    {
+        FormCompletedText = $"User {UserData.Username} logged in.";
+        ExUsername = UserData.Username;
+        Password = UserData.Password;
+        UserData = new User();
+    }
+
+    public class User
+    {
+        public string Username { get; set; } = "";
+        public string Password { get; set; } = "";
+    }
+}
+@* <SurveyPrompt Title="How is Blazor working for you?" /> *@

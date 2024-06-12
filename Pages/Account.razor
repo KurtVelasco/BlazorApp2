@@ -1,0 +1,53 @@
+﻿@page "/Account"
+
+
+
+<div class="meme">
+    <div class="createAccount">
+        <EditForm class="method-post" Model="@UserData" OnSubmit="@Submit">
+            <div class="create-logo">
+                <img alt="logo" src="imageResources/songBird.png">
+            </div>
+            <span for="error" id="errorLabel">@FormCompletedText</span>
+            <label for="username" id="label-username">Email:</label>
+            <InputText class="username" placeholder="Username" @bind-Value="UserData.Username" />
+            <label for="password" id="label-password">Password:</label>
+            <InputText class="password" placeholder="Password" @bind-Value="UserData.Password" />
+            <label for="password" id="label-password">Confirm Password:</label>
+            <InputText class="password" placeholder="Confirm Password" @bind-Value="UserData.ConfirmPassword" />
+            <button class="submitCredentials" type="submit">Submit</button>
+            <div class="haveAccount"><a href="login">Already Have an Account?</a></div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    public NewUser UserData { get; set; } = new NewUser();
+    public string FormCompletedText { get; set; } = "";
+    public string ExUsername = "";
+    public string Password = "";
+    public string ConfirmPassword = "";
+
+    protected override void OnInitialized()
+    {
+        UserData = new NewUser();
+    }
+
+    public void Submit()
+    {
+        //Debug Only for this 2 variables
+        ExUsername = UserData.Username;
+        Password = UserData.Password;
+        if(UserData.Password != UserData.ConfirmPassword)
+        {
+            FormCompletedText = "Password does not match";
+        }
+    }
+
+    public class NewUser
+    {
+        public string Username { get; set; } = "";
+        public string Password { get; set; } = "";
+        public string ConfirmPassword { get; set; } = "";
+    }
+}
